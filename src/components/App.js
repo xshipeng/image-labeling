@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import ImageLabel from './ImageLabel.js';
-import ButtonSet from './ButtonSet.js';
+import ImageLabelContainer from '../containers/ImageLabelContainer.js';
 
 
 class App extends Component {
   render() {
     return (
       <div>
-
-        <ImageLabel />
+        <ImageLabelContainer />
       </div>
     );
   }

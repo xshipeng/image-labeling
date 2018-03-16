@@ -10,7 +10,7 @@ class ImageContainer extends Component {
     
     componentDidMount() {
         const image = new window.Image();
-        image.src = require("./group-photo.jpg");
+        image.src = require("../group-photo.jpg");
         image.onload = () => {
             // setState will redraw layer
             // because "image" property is changed

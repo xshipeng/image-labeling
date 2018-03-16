@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Rect } from "react-konva";
 
+
 class BoundingBox extends Component {
-    render() {
-        return (
-            <Rect
+  render() {
+    return (
+     <Rect
                 x={this.props.x}
                 y={this.props.y}
                 width={this.props.width}
@@ -13,9 +14,8 @@ class BoundingBox extends Component {
                 stroke='red'
                 strokeWidth={2}
             />
-        );
-    }
-
+    );
+  }
 }
 
 export default BoundingBox;
