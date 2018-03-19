@@ -59,26 +59,15 @@ class ImageLabelView extends Component {
                 }
             );
             this.setState({
-                x:0,
-                y:0,
-                width:0,
+                x: 0,
+                y: 0,
+                width: 0,
                 height: 0,
 
             })
         }
     }
     render() {
-        let boxesToRender = this.props.boxes.slice(0);
-        // let boxesToRender = [];
-        boxesToRender.push({
-            id: 100,
-            position: {
-                x: this.state.x,
-                y: this.state.y,
-                width: this.state.width,
-                height: this.state.height,
-            }
-        });
         return (
             <div>
                 <div>Image Label</div>
@@ -90,7 +79,11 @@ class ImageLabelView extends Component {
                     onMouseUp={this.handleMouseUp}>
                     <Layer>
                         <ImageContainer />
-                        <BoundingBoxes boxes={boxesToRender.slice()} />
+                        <BoundingBoxes boxes={this.props.boxes.slice()} />
+                        <BoundingBox x={this.state.x}
+                            y={this.state.y}
+                            width={this.state.width}
+                            height={this.state.height} />
                     </Layer>
                 </Stage>
                 <p>
