@@ -1,30 +1,21 @@
-import React, { Component } from 'react';
-import { Image } from "react-konva";
-class ImageContainer extends Component {
-    constructor(){
-        super();
-        this.state = {
-            image: null
-        };
-    }
-    
-    componentDidMount() {
-        const image = new window.Image();
-        image.src = require("../group-photo.jpg");
-        image.onload = () => {
-            // setState will redraw layer
-            // because "image" property is changed
-            this.setState({
-                image: image
-            });
-        };
-    }
+import { connect } from "react-redux";
+import ResizedImage from "../components/ResizedImage.js";
+import { setImageProps } from "../actions";
 
-    render() {
-        return (
-            <Image image={this.state.image} />
-        );
+const mapStateToProps = (state, ownProps) => {
+  return {
+    imageURL: ownProps.imageURL
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setImageProps: (imageUrl, clientHeight, clientWidth, realHeight, realWidth) => {
+      dispatch(setImageProps(imageUrl, clientHeight, clientWidth, realHeight, realWidth));
     }
+  }
 }
+
+const ImageContainer = connect(mapStateToProps, mapDispatchToProps)(ResizedImage);
 
 export default ImageContainer;

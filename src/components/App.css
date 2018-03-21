@@ -1,0 +1,14 @@
+#labelcontainer{
+position: absolute;
+padding:5%;
+top:0;
+left:0;    
+width:100%;
+height:100%;
+
+}
+#imagelabelcontainer{
+    position: relative;
+    padding:5%;
+  
+}

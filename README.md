@@ -1,6 +1,7 @@
 # Image Labeling Platform
 ## To do 
-- [ ] Add Redux to implement the undo and redo
-- [ ] Connect with the json server
-- [ ] Image switch and Image resize with the window transformation
+- [X] Add Redux to implement the undo and redo
+- [X] Add polygon
+- [X] Image resize with the window transformation
 - [ ] Semantic labeling
+- [ ] Connect with the json server and Image Switch
