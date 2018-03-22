@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Group, Line } from 'react-konva';
 
 class Polygons extends Component {
-    convertClientXtoRealX = (x) => {
-        return x / this.props.imageProps.clientWidth * this.props.imageProps.realWidth;
-    }
-    convertClientYtoRealY = (y) => {
-        return y / this.props.imageProps.clientHeight * this.props.imageProps.realHeight;
-    }
     convertRealXtoClientX = (x) => {
         return x / this.props.imageProps.realWidth * this.props.imageProps.clientWidth;
     }

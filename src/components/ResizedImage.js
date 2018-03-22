@@ -1,39 +1,55 @@
 import React, { Component } from 'react';
+import { Image } from 'react-konva';
 
 class ResizedImage extends Component {
     constructor() {
         super();
         this.state = {
-            imageUrl: null,
+            image: null,
             actualImageWidth: 0,
             actualImageHeight: 0,
+            clientHeight: 50,
+            clientWidth: 50,
         }
     }
     componentDidMount() {
         const image = new window.Image();
         image.src = require("../people-02.jpg");
         image.onload = () => {
-            console.log(image.width, image.height);
             this.setState({
-                imageUrl: image.src,
+                image: image,
                 actualImageWidth: image.width,
                 actualImageHeight: image.height,
             });
+            this.changeSize();
         }
-    }
-    componentDidUpdate() {
         window.addEventListener('resize', this.changeSize);
-        this.changeSize();
     }
     changeSize = () => {
-        const image = document.getElementById("image");
-        this.props.setImageProps(this.state.imageUrl, 
-            image.clientHeight, image.clientWidth,
-        this.state.actualImageHeight,this.state.actualImageWidth);
+        const container = document.getElementById("imagelabelcontainer");
+        let scaleX=this.state.actualImageWidth / container.clientWidth;
+        let scaleY=this.state.actualImageHeight / container.clientHeight;
+        if ( scaleX< scaleY ) {
+            this.setState({
+                clientHeight: container.clientHeight,
+                clientWidth: this.state.actualImageWidth / scaleY,
+            })
+        }
+        else {
+            this.setState({
+                clientHeight: this.state.actualImageHeight / scaleX,
+                clientWidth: container.clientWidth,
+            })
+        }
+        this.props.setImageProps(this.state.image.src,
+            this.state.clientHeight, this.state.clientWidth,
+            this.state.actualImageHeight, this.state.actualImageWidth);
     }
     render() {
         return (
-            <img src={this.state.imageUrl} id="image" className="responsive-img" />
+            <Image image={this.state.image}
+                height={this.state.clientHeight}
+                width={this.state.clientWidth} name="image"/>
         );
     }
 }

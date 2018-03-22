@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Layer, Circle, Line, Stage, Image } from 'react-konva';
 import Polygons from './Polygons.js'
 import CroppedImage from './CroppedImage.js'
+import ImageContainer from '../containers/ImageContainer.js';
 
 class AddPolygon extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             stageWidth: 300,
@@ -21,16 +22,16 @@ class AddPolygon extends Component {
     }
 
     convertClientXtoRealX = (x) => {
-        return x / this.props.imageProps.clientWidth * this.props.imageProps.realWidth;
+        return x&&this.props.imageProps&&x / this.props.imageProps.clientWidth * this.props.imageProps.realWidth;
     }
     convertClientYtoRealY = (y) => {
-        return y / this.props.imageProps.clientHeight * this.props.imageProps.realHeight;
+        return y&&this.props.imageProps&&y / this.props.imageProps.clientHeight * this.props.imageProps.realHeight;
     }
     convertRealXtoClientX = (x) => {
-        return x / this.props.imageProps.realWidth * this.props.imageProps.clientWidth;
+        return x&&this.props.imageProps&&x / this.props.imageProps.realWidth * this.props.imageProps.clientWidth;
     }
     convertRealYtoClientY = (y) => {
-        return y / this.props.imageProps.realHeight * this.props.imageProps.clientHeight;
+        return y&&this.props.imageProps&&y / this.props.imageProps.realHeight * this.props.imageProps.clientHeight;
     }
     handleMouseDown = () => {
         let stage = this.refs.stage.getStage();
@@ -94,31 +95,29 @@ class AddPolygon extends Component {
                 <Stage ref="stage"
                     x={0}
                     y={0}
-                    width={this.props.imageProps.clientWidth}
-                    height={this.props.imageProps.clientHeight}>
+                    width={this.props.imageProps?this.props.imageProps.clientWidth:1000}
+                    height={this.props.imageProps?this.props.imageProps.clientHeight:1000}
+                    onMouseDown={this.handleMouseDown}
+                    onMouseMove={this.handleMouseMove}>
                     <Layer ref="layer"
-                        onMouseDown={this.handleMouseDown}
-                        onMouseMove={this.handleMouseMove}
+
                     >
-                        <Image
-                            width={this.props.imageProps.clientWidth}
-                            height={this.props.imageProps.clientHeight}
-                            stroke="red" />
+                        <ImageContainer />
                         <Line
                             ref="line"
                             points={pointsArray}
                             stroke="red" />
                         {pointsToRender}
-                        <Polygons labels={this.props.labels.slice()} 
-                        imageProps={this.props.imageProps}/>
-                        {/* <CroppedImage
-                            src={this.props.imageProps.imageUrl}
-                            x={this.state.pointer.x}
-                            y={this.state.pointer.y}
-                        /> */}
+                        <Polygons labels={this.props.labels}
+                            imageProps={this.props.imageProps} />
+
                     </Layer>
 
-
+                    <CroppedImage
+                        imageProps={this.props.imageProps}
+                        x={this.state.pointer.x}
+                        y={this.state.pointer.y}
+                    />
                 </Stage>
             </div>
         );
