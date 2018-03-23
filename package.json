@@ -12,7 +12,8 @@
     "react-konva": "^1.7.1",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
-    "redux-undo": "^0.6.1"
+    "redux": "^3.7.2",
+    "redux-undo": "^1.0.0-beta9-9-7"
   },
   "scripts": {
     "start": "react-scripts start",

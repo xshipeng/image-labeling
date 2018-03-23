@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layer, Circle, Line, Stage, Image } from 'react-konva';
+import { Layer, Circle, Line, Stage } from 'react-konva';
 import Polygons from './Polygons.js'
 import CroppedImage from './CroppedImage.js'
 import ImageContainer from '../containers/ImageContainer.js';
@@ -91,7 +91,6 @@ class AddPolygon extends Component {
             return pointsArray;
         }, []);
         return (
-            <div>
                 <Stage ref="stage"
                     x={0}
                     y={0}
@@ -119,7 +118,6 @@ class AddPolygon extends Component {
                         y={this.state.pointer.y}
                     />
                 </Stage>
-            </div>
         );
     }
 }

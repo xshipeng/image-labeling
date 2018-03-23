@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import AddPolygon from './AddPolygon.js';
 import UndoRedo from '../containers/UndoRedo.js'
 
-import ImageContainer from '../containers/ImageContainer.js';
 import LabelContainer from '../containers/LabelContainer.js';
 import SubmitButtonContainer from '../containers/SubmitButtonContainer.js';
 
@@ -18,11 +16,9 @@ class App extends Component {
         <div id="topbar">
           <nav id="navbar">
             <div className="nav-wrapper">
-              <a href="#" className="brand-logo">Logo</a>
+              <a className="brand-logo">Logo</a>
               <ul className="right">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
+                <li><a href="collapsible.html">About</a></li>
               </ul>
             </div>
           </nav>

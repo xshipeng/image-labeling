@@ -1,19 +1,32 @@
 export const addLabel = (id, shape, points) => {
   return {
     type: "ADD_LABEL",
-    id: id,
-    shape: shape,
-    points: points
+    id,
+    shape,
+    points
   }
 }
 
-export const setImageProps = (imageUrl, clientHeight, clientWidth, realHeight, realWidth) => {
+export const setImageProps = (clientHeight, clientWidth, realHeight, realWidth) => {
   return {
     type: "SET_IMAGE_PROPS",
-    imageUrl:imageUrl,
-    clientHeight: clientHeight,
-    clientWidth: clientWidth,
-    realHeight: realHeight,
-    realWidth: realWidth
+    clientHeight,
+    clientWidth,
+    realHeight,
+    realWidth
+  }
+}
+
+export const setNextImage=(imageId,imageUrl)=>{
+  return{
+    type:"SET_NEXT_IMAGE",
+    imageId,
+    imageUrl,
+  }
+}
+
+export const removeLabels=()=>{
+  return{
+    type:"DELETE_LABELS",
   }
 }

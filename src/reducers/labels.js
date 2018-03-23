@@ -1,4 +1,4 @@
-import undoable, {distinctState} from 'redux-undo';
+import undoable from 'redux-undo';
 const labels = (state = {}, action) => {
     switch (action.type) {
         case "ADD_LABEL":
@@ -10,12 +10,12 @@ const labels = (state = {}, action) => {
                     points: action.points
                 }
             ]
+        case "DELETE_LABELS":
+            return []
         default:
             return state
     }
 }
-const undoableLabels = undoable(labels, {
-    filter: distinctState()
-});
+const undoableLabels = undoable(labels);
 
 export default undoableLabels

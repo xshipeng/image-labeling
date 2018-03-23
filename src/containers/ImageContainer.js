@@ -2,16 +2,17 @@ import { connect } from "react-redux";
 import ResizedImage from "../components/ResizedImage.js";
 import { setImageProps } from "../actions";
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    imageUrl: ownProps.imageUrl
+    imageId: state.imageProps.imageId,
+    imageUrl: state.imageProps.imageUrl
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setImageProps: (imageUrl,clientHeight, clientWidth, realHeight, realWidth) => {
-      dispatch(setImageProps(imageUrl,clientHeight, clientWidth, realHeight, realWidth));
+    setImageProps: (clientHeight, clientWidth, realHeight, realWidth) => {
+      dispatch(setImageProps(clientHeight, clientWidth, realHeight, realWidth));
     }
   }
 }

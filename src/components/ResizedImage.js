@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image } from 'react-konva';
-import axios from 'axios';
 
 class ResizedImage extends Component {
     constructor() {
@@ -11,42 +10,27 @@ class ResizedImage extends Component {
             actualImageHeight: 0,
             clientHeight: 50,
             clientWidth: 50,
-            imageUrls: null,
-            imageIndex: 0,
-            imageUrl:null
+
         }
     }
-    getNextImage = () => {
-        const imageUrl = this.state.imageUrls[this.state.imageIndex].imageUrl;
-        this.setState({
-            imageUrl:imageUrl,
-            imageIndex: this.state.imageIndex + 1,
-        });
-        const image = new window.Image();
+
+    loadImage = (imageUrl) => {
+        let image = new window.Image();
         image.src = imageUrl;
-        // console.log(image.src);
+        console.log(imageUrl);
         image.onload = () => {
             this.setState({
                 image: image,
                 actualImageWidth: image.width,
                 actualImageHeight: image.height,
             });
+            image.onerror=()=>{
+                console.log("image loading failed");
+            }
             this.changeSize();
         }
 
     }
-
-    getImageUrls = () => {
-        axios
-            .get("http://127.0.0.1:8000/images")
-            .then(res => {
-                // console.log(res.data);
-                this.setState({
-                    imageUrls: res.data,
-                });
-                this.getNextImage();
-            })
-    };
 
     changeSize = () => {
         const container = document.getElementById("imagelabelcontainer");
@@ -65,13 +49,21 @@ class ResizedImage extends Component {
             })
         }
         this.props.setImageProps(
-            this.state.imageUrl,
             this.state.clientHeight, this.state.clientWidth,
             this.state.actualImageHeight, this.state.actualImageWidth);
     }
     componentDidMount() {
         window.addEventListener('resize', this.changeSize);
-        this.getImageUrls();
+        this.loadImage(require("../404.png"));
+    }
+    componentDidUpdate() {
+        if (this.state.image) {
+            if (this.props.imageUrl !== this.state.image.src) {
+                this.loadImage(this.props.imageUrl);
+            }
+        }
+
+
     }
 
     render() {

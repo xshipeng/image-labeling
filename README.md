@@ -3,5 +3,5 @@
 - [X] Add Redux to implement the undo and redo
 - [X] Add polygon
 - [X] Image resize with the window transformation
-- [ ] Semantic labeling
-- [ ] Connect with the json server and Image Switch
+- [X] Semantic labeling
+- [X] Connect with the json server and Image Switch
