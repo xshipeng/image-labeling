@@ -10,7 +10,7 @@ export const addLabel = (id, shape, points) => {
 export const setImageProps = (imageUrl, clientHeight, clientWidth, realHeight, realWidth) => {
   return {
     type: "SET_IMAGE_PROPS",
-    imageUrl: imageUrl,
+    imageUrl:imageUrl,
     clientHeight: clientHeight,
     clientWidth: clientWidth,
     realHeight: realHeight,

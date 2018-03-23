@@ -4,14 +4,14 @@ import { setImageProps } from "../actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    imageURL: ownProps.imageURL
+    imageUrl: ownProps.imageUrl
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setImageProps: (imageUrl, clientHeight, clientWidth, realHeight, realWidth) => {
-      dispatch(setImageProps(imageUrl, clientHeight, clientWidth, realHeight, realWidth));
+    setImageProps: (imageUrl,clientHeight, clientWidth, realHeight, realWidth) => {
+      dispatch(setImageProps(imageUrl,clientHeight, clientWidth, realHeight, realWidth));
     }
   }
 }

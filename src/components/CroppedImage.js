@@ -18,10 +18,11 @@ class CroppedImage extends Component {
         return y / this.props.imageProps.clientHeight * this.props.imageProps.realHeight;
     }
 
-    componentDidMount() {
+
+    loadImage = () => {
         const image = new window.Image();
         console.log(this.props.imageProps);
-        image.src = this.props.imageProps.imageUrl;
+        image.src = this.props.imageProps.imageURL ? this.props.imageProps.imageURL : require("../people-02.jpg");;
         image.onload = () => {
             this.setState({
                 image: image,
@@ -29,11 +30,22 @@ class CroppedImage extends Component {
 
         };
         image.onerror = () => {
-            image.src = this.props.imageProps.imageUrl;
+            console.log("loding image failed!");
         };
-
     }
 
+    componentDidMount() {
+        this.loadImage();
+    }
+    componentDidUpdate() {
+        if (this.state.image) {
+            if (this.props.imageProps.imageUrl != this.state.image.src) {
+                this.loadImage();
+            }
+        }
+
+
+    }
 
     render() {
         return (

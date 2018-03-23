@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import AddPolygon from './AddPolygon.js';
 import UndoRedo from '../containers/UndoRedo.js'
-import SubmitButton from './SubmitButton.js';
+
+import ImageContainer from '../containers/ImageContainer.js';
+import LabelContainer from '../containers/LabelContainer.js';
+import SubmitButtonContainer from '../containers/SubmitButtonContainer.js';
+
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 import './App.css'
-import ImageContainer from '../containers/ImageContainer.js';
-import LabelContainer from '../containers/LabelContainer.js';
-
 
 class App extends Component {
   render() {
@@ -44,7 +45,7 @@ class App extends Component {
                 <UndoRedo />
               </div>
               <div className="Submit">
-                <SubmitButton />
+                <SubmitButtonContainer />
               </div>
             </div>
           </div>
